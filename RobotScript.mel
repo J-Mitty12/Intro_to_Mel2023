@@ -1,0 +1,60 @@
+//create body
+polyCube -w 7 -h 10 -d 3.5 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -relative -objectSpace -worldSpaceDistance 0 10 0;
+
+//create leg (r)
+polyCube -w 1 -h 5 -d 2 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -relative -objectSpace -worldSpaceDistance 1.5 5 0;
+
+//create leg (l)
+polyCube -w 1 -h 5 -d 2 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -relative -objectSpace -worldSpaceDistance -1.5 5 0;
+
+//create arm (r)
+polyCube -w 1 -h 5 -d 2 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -relative -objectSpace -worldSpaceDistance 4 10.5 0;
+
+//create arm (l)
+polyCube -w 1 -h 5 -d 2 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -relative -objectSpace -worldSpaceDistance -4 10.5 0;
+
+//create head
+polyCube -w 4 -h 3 -d 3 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -relative -objectSpace -worldSpaceDistance 0 17 0;
+
+//create eyes
+polySphere -r 1 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0.88 17.5 -1.2;
+scale -r .6 .6 .6;
+
+polySphere -r 1 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1;
+move -r -0.99 17.5 -1.2;
+scale -r .6 .6 .6;
+
+
+//create base cylinder for mouth
+polyCylinder -r 1 -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+rotate -r -os -fo 0 0 90;
+move -r 0.03 16.2 -1.5;
+scale -r .37 .85 .37;
+
+//create base front piece
+polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -r 0 11 -1.7;
+scale -r 4.5 5.15 .9;
+
+//create front buttons
+polyCylinder -r 1 -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r 1 12.6 -2;
+rotate -r -os -fo -90 0 0;
+scale -r .7 .7 .7;
+
+polyCylinder -r 1 -h 2 -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r 1 9.8 -2;
+rotate -r -os -fo -90 0 0;
+scale -r .7 .7 .7;
+
+//create front long piece
+polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -r -0.9 11.2 -2.3;
+scale -r 1.2 4.08 .9;
