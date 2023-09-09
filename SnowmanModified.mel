@@ -1,0 +1,32 @@
+float $sizeBase = 5;
+float $sizeBody = 3;
+float $sizeHead = 2;
+
+string $name;
+$name = "frosty";
+select -r pSphere1 pSphere3 pSphere2 ;
+print ($name);
+
+
+polySphere -r $sizeBase -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 $sizeBase 0 ;
+
+polySphere -r $sizeBody -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 ($sizeBase + 7) 0 ;
+
+polySphere -r $sizeHead -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r 0 ($sizeBody + 13) 0 ;
+
+polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -r 0 18 0;
+scale -r 5 1 3;
+
+polyCube -w 1 -h 1 -d 1 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+move -r 0 19 0;
+scale -r 2.5 2.5 2.5;
+
+polyCone -r 1 -h 2 -sx 20 -sy 1 -sz 0 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+rotate -r -os -fo 90 0 0 ;
+move -r 0 16 2.3;
+scale -r 0.5 0.8 0.5;
+
