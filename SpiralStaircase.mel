@@ -1,0 +1,28 @@
+
+proc GenerateStaircase(string $description)
+{
+    // creation variables
+    int $stairlength = 5;
+    int $stairWidth = 2;
+    int $stairHeight = 1;
+
+    // staircase loop
+    for ($step=0; $step < 25; $step++)
+    {
+        polyCube -ch on -o on -w $stairWidth -h $stairHeight - d $stairlength -cuv 4;
+        move -r 0 $step -4;
+        xform -ws -rotatePivot 0 0 0;
+        rotate - r -os 0 ($step * 15) 0;
+    }
+
+    // description of object created
+    print ($description);
+}
+
+    GenerateStaircase("This is my spiral staircase!")
+
+    /* referenced code from website 
+    "Maya Spiral (MEL SOUP Spiral Stair Basic)"
+    for help with anatomy of functioning loop within function
+    */
+    
