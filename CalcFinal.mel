@@ -1,34 +1,121 @@
-proc Addition ()
-{
+//Add
+//Subtract
+//Mulitply
+//Divide
+//Power
+//Mean 
+//Median
 
-}
 
-proc Subtraction()
-{
 
-}
+ print("Hello, welcome to my calculator!");
 
-proc Multiplication()
-{
+int $num1[] = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,0];
+int $num2[] = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,0];
 
-}
 
-proc Division()
-{
-
-}
-
-proc Power()
-{
-
-}
-
-proc Mean()
-{
-
-}
-
-proc Median()
+global proc Addition(int $num1, int $num2)
 {
     
+    $answer = ($num1 += $num2);
+    print ($num1 + " + " + $num2 + " = " + $answer);
+    return ($answer);
+
 }
+
+
+
+global proc Subtraction(int $num1, int $num2)
+{
+    $answer = ($num1 -= $num2);
+    print ($num1 + " - " + $num2 + " = " + $answer);
+    return ($answer);
+
+}
+
+Subtraction();
+
+global proc Multiplication()
+{
+    $answer = ($num1 *= $num2);
+    print ($num1 + " * " + $num2 + " = " + $answer);
+    return ($answer);
+
+}
+
+global proc Division()
+{
+    $answer = ($num1 /= $num2);
+    print ($num1 + " + " + $num2 + " = " + $answer);
+    return ($answer);
+
+}
+
+global proc Power()
+{
+    $answer = ($num1 ^= $num2);
+    print ($num1 + " + " + $num2 + " = " + $answer);
+    return ($answer);
+
+}
+
+global proc Mean()
+{
+    int $valMean;
+    for ($i=0, $i < 100)
+    {
+        int $num = `rand 100`;
+        $valMean[size($valMean)] = $num;
+    }
+
+}
+
+
+global proc Median()
+{
+    
+
+    if ()
+    {
+        int $valMed
+    }
+    
+}
+
+
+
+global proc Calculator(int $num1, int operation, int $num2)
+{
+    if (operation == +)
+    {
+        Addition();
+    }
+    else if  ($operation == -)
+    {
+        Subtraction();
+    }
+    else if ($operation == x)
+    {
+        Multiplication();
+    }
+    else if ($operation == /)
+    {
+        Division();
+    }
+    else if ($operation == ^)
+    {
+        Power();
+    }
+    else if ($operation == m)
+    {
+        Mean();
+    }
+    else if ($operation == M)
+    {
+        Mode();
+    }
+
+    else print ("Please input a valid operation type");
+}
+
+Calculator();
