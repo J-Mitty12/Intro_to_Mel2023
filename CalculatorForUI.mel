@@ -1,0 +1,202 @@
+global proc int addNumbers(int $a, int $b)
+{
+    int $result = $a + $b;
+    return $result;
+}
+
+global proc add()
+{
+    int $num1 = 5;
+    int $num2 = 6;
+    int $sum = addNumbers($num1, $num2);
+
+    print ("The sum of " + $num1 + " and " + $num2 + " is: " + $sum + "\n");
+}
+
+global proc float subtractNumbers(float $a, float $b)
+{
+    int $result = $a - $b;
+    return $result;
+}
+
+global proc subtract()
+{
+    int $num1 = 6;
+    int $num2 = 4;
+    int $difference = subtractNumbers($num1, $num2);
+
+    print ("The difference of " + $num1 + " and " + $num2 + " is: " + $difference + "\n");
+}
+
+
+global proc float multiplyNumbers(float $a, float $b)
+{
+    float $result = $a * $b;
+    return $result;
+}
+
+global proc multiply()
+{
+    float $num1 = 6;
+    float $num2 = 4;
+    float $product = multiplyNumbers($num1, $num2);
+
+    print ("The product of " + $num1 + " and " + $num2 + " is: " + $product + "\n");
+}
+
+
+global proc float divideNumbers(float $a, float $b)
+{
+    float $result = $a / $b;
+    return $result;
+}
+
+global proc divide()
+{
+    float $num1 = 30;
+    float $num2 = 10;
+    float $quotient = divideNumbers($num1, $num2);
+
+    print ("The quotient of " + $num1 + " and " + $num2 + " is: " + $quotient + "\n");
+}
+
+
+global proc float power(float $base, int $exponent) {
+    float $result = 1;
+    for ($i = 0; $i < $exponent; $i++) {
+        $result *= $base;
+    }
+    return $result;
+}
+
+
+global proc printPower(float $base, int $exponent) {
+    float $result = power($base, $exponent);
+    print("The result of " + $base + " raised to the power of " + $exponent + " is: " + $result + "\n");
+}
+
+
+global proc Power() {
+    float $base = 2; 
+    int $exponent = 3; 
+    printPower($base, $exponent);
+}
+
+
+global proc float getMedian(float $numbers[]) {
+    float $median = 0;
+    int $numCount = size($numbers);
+
+    
+    float $sorted[];
+    for ($i = 0; $i < $numCount; $i++) {
+        $sorted[`size $sorted`] = $numbers[$i];
+    }
+    
+    for ($i = 0; $i < $numCount; $i++) {
+        for ($j = 0; $j < ($numCount - 1); $j++) {
+            if ($sorted[$j] > $sorted[$j + 1]) {
+                float $temp = $sorted[$j];
+                $sorted[$j] = $sorted[$j + 1];
+                $sorted[$j + 1] = $temp;
+            }
+        }
+    }
+
+    
+    if ($numCount % 2 == 0) {
+        $median = ($sorted[($numCount / 2) - 1] + $sorted[$numCount / 2]) / 2;
+    } else {
+        $median = $sorted[(($numCount - 1) / 2)];
+    }
+    return $median;
+}
+
+
+global proc median() {
+    float $numbers[] = {9, 1, 7, 4, 5}; 
+    float $result = getMedian($numbers);
+    print("Median is: " + $result + "\n");
+}
+
+
+global proc float getMode(float $numbers[]) {
+    float $mode;
+    int $maxCount = 0;
+    for ($i = 0; $i < size($numbers); $i++) {
+        int $count = 0;
+        for ($j = 0; $j < size($numbers); $j++) {
+            if ($numbers[$j] == $numbers[$i])
+                $count++;
+        }
+        if ($count > $maxCount) {
+            $maxCount = $count;
+            $mode = $numbers[$i];
+        }
+    }
+    return $mode;
+}
+
+
+global proc mode() {
+    float $numbers[] = {1, 2, 3, 3, 4, 4, 5, 5}; 
+    float $result = getMode($numbers);
+    print("Mode is: " + $result + "\n");
+}
+
+
+
+global proc float getMean(float $numbers[]) {
+    float $sum = 0;
+    for ($i = 0; $i < size($numbers); $i++) {
+        $sum += $numbers[$i];
+    }
+    float $mean = $sum / size($numbers);
+    return $mean;
+}
+
+
+global proc mean() {
+    float $numbers[] = {2, 4, 4, 4, 5, 5, 7, 9}; 
+    float $result = getMean($numbers);
+    print("Mean is: " + $result + "\n");
+}
+
+
+global proc Calculator(int $operation)
+{
+    if ($operation == 1)
+    {
+        add();
+    }
+    else if  ($operation == 2)
+    {
+        subtract();
+    }
+    else if ($operation == 3)
+    {
+        multiply();
+    }
+    else if ($operation == 4)
+    {
+        divide();
+    }
+    else if ($operation == 5)
+    {
+        Power();
+    }
+    else if ($operation == 6)
+    {
+        median();
+    }
+    else if ($operation == 7)
+    {
+        mode();
+    }
+    else if ($operation == 8)
+    {
+        mean();
+    }
+}
+
+Calculator(8);
