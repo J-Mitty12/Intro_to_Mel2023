@@ -1,0 +1,91 @@
+global proc placementGenerator(float $xMin, float $xMax, float $yMin, float $yMax, float $zMin, float $zMax, int $numDups)
+{
+
+    //store object(s) name as variable 
+    string $sels[] = `ls -selection`; // (ex: ["rock1", "rock2", "rock3", "rock4", "rock5"])
+
+
+    //looping through each object selection
+    for($i=0; $i < size($sels); $i++)
+    {
+        //perform actions for each individual object
+        for($j=0; $j<$numDups; $j++)
+        {
+            //duplicate current object
+            string $dups[] = `duplicate -rr $sels[$i]`;
+            string $dup = $dups[0];
+
+            //generate a new x, y, and z value based on range arguments
+            float $randX = `rand $xMin $xMax`;
+            float $randY = `rand $yMin $yMax`;
+            float $randZ = `rand $zMin $zMax`;
+
+            //translate current object to new position
+            xform -worldSpace -translation $randX $randY $randZ $dup;
+
+        }
+    }
+}
+
+//placementGenerator(-50, 70, -5, 20, -200, 90, 100);
+
+
+global proc GenerateButton()
+{
+    string $Xmin = `optionVar -q "X Min"`;
+    string $Xmax = `optionVar -q "X Max"`;
+    string $Ymin = `optionVar -q "Y Min"`;
+    string $Ymax = `optionVar -q "Y Max"`;
+    string $Zmin = `optionVar -q "Z Min"`;
+    string $Zmax = `optionVar -q "Z Max"`;
+    string $NumDups = `optionVar -q "Number of Dups"`;
+
+    string $one = `optionVar -q -value $Xmin`;
+    string $two = `optionVar -q -value $Xmax`;
+    string $th = `optionVar -q -value $Ymin`;
+    string $four = `optionVar -q -value $Ymax`;
+    string $five = `optionVar -q -value $Zmin`;
+    string $six = `optionVar -q -value $Zmax`;
+    string $sev = `optionVar -q -value $NumDups`;
+
+    placementGenerator($one, $two, $th, $four, $five, $six, $sev);
+
+}
+
+global proc RandomPlacementUI()
+{
+    string $mWindow = "test_UI";
+
+    if (`window -exists $mWindow`)
+        deleteUI $mWindow;
+
+    $mWindow  = `window -height 400 
+                            -title "Random Object Generator"
+                            -sizeable 1
+                            -width 400
+                            $mWindow`;
+    string $mColumn = `columnLayout -adjustableColumn 1
+                                -parent $mWindow`;
+    button -parent $mColumn -label "Instructions" -command "print (\"Input desired values for each field, select desired object, and press -Generate- button\")";
+
+    textField -editable 0 -text ("X Min");
+    optionVar -stringValue "X Min" `floatField`;
+    textField -editable 0 -text ("X Max");
+    optionVar -stringValue "X Max" `floatField`;
+    textField -editable 0 -text ("Y Min");
+    optionVar -stringValue "Y Min" `floatField`;
+    textField -editable 0 -text ("Y Max");
+    optionVar -stringValue "Y Max" `floatField`;
+    textField -editable 0 -text ("Z Min");
+    optionVar -stringValue "Z Min" `floatField`;
+    textField -editable 0 -text ("Z Max");
+    optionVar -stringValue "Z Max" `floatField`;
+    textField -editable 0 -text ("Number of Duplicates");
+    optionVar -stringValue "Number of Dups" `floatField`;
+    optionVar -stringValue "myTextField" `textField -editable 0`;
+
+
+    button -parent $mColumn -label "Generate" -command GenerateButton;
+    showWindow $mWindow;
+}  
+RandomPlacementUI(); 
